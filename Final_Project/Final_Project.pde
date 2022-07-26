@@ -15,12 +15,12 @@ void setup()
   //Display Checker
   //Display Orientation Checker
   //Display and CANVAS Checker
-  size(800, 900); //Landscape (Portrait or Square)
+  size(1200, 900); //Landscape (Portrait or Square)
   //
   //Population
-  drawingSurfaceX = width*1/6;
+  drawingSurfaceX = width*1/5;
   drawingSurfaceY = height*1/20;
-  drawingSurfaceWidth = width*1/2;
+  drawingSurfaceWidth = width*3/5;
   drawingSurfaceHeight = height*4/5;
   drawingDiameter = width*1/100;
   //
