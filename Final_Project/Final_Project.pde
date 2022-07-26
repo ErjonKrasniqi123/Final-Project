@@ -33,12 +33,18 @@ float titleX5, titleY5, titleWidth5, titleHeight5;
 PFont titleFont5;
 Boolean drawingtoolsON=false;
 float rectX1, rectY1, rectWidth1, rectHeight1;
-float toolX1,toolY1,toolWidth1, toolHeight1;
+float toolX1,toolY1,tool1Diameter;
 float rectX2, rectY2, rectWidth2, rectHeight2;
-float toolX2,toolY2,toolWidth2, toolHeight2;
+float toolX2,toolY2,tool2Diameter;
 float rectX3, rectY3, rectWidth3, rectHeight3;
-float toolX3,toolY3,toolWidth3, toolHeight3;
+float toolX3,toolY3,tool3Diameter;
+float thinlineButtonX,thinlineButtonY,thinlineButtonWidth,thinlineButtonHeight;
 Boolean thinlineON=false;
+float mediumlineButtonX,mediumlineButtonY,mediumlineButtonWidth,mediumlineButtonHeight;
+Boolean mediumlineON=false;
+float thicklineButtonX,thicklineButtonY,thicklineButtonWidth,thicklineButtonHeight;
+Boolean thicklineON=false;
+float lineThickness;
 //
 void setup()
 {
@@ -107,30 +113,42 @@ void setup()
   //Drawing Tools
   rectX1=width*1/10.5;
   rectY1=height*1/5;
-  rectWidth1=width*1/25;
+  rectWidth1=width*1/35;
   rectHeight1=height*1/25;
-  rectX2=width*1/6;
+  rectX2=width*1/8;
   rectY2=height*1/5;
-  rectWidth2=width*1/25;
+  rectWidth2=width*1/35;
   rectHeight2=height*1/25;
-  rectX3=width*1/4.5;
+  rectX3=width*1/6.45;
   rectY3=height*1/5;
-  rectWidth3=width*1/25;
+  rectWidth3=width*1/35;
   rectHeight3=height*1/25;
  
   //Drawing Tools
-   //toolX1=;
-   //toolY1=;
-   //toolWidth1=;
-   //toolHeight1=;
-   // toolX2=;
-   //toolY2=;
-   //toolWidth2=;
-   //toolHeight2=;
-   // toolX3=;
-   // toolY3=;
-   //toolWidth3=; 
-   //toolHeight3=;
+   toolX1=width*1/9.3;
+   toolY1=height*1/4.5;
+   tool1Diameter=height/200;
+   toolX2=width*1/7.2;
+   toolY2=height*1/4.5;
+   tool2Diameter=height/100;
+   toolX3=width*1/5.9;
+   toolY3=height*1/4.5;
+   tool3Diameter=height/50;
+   //
+   thinlineButtonX=width*1/10.5;
+   thinlineButtonY=height*1/5;
+   thinlineButtonWidth=width*1/35;
+   thinlineButtonHeight=height*1/25;
+   //
+   mediumlineButtonX=width*1/8;
+   mediumlineButtonY=height*1/5;
+   mediumlineButtonWidth=width*1/35;
+   mediumlineButtonHeight=height*1/25;
+   //
+    thicklineButtonX=width*1/6.45;
+   thicklineButtonY=height*1/5;
+   thicklineButtonWidth=width*1/35;
+   thicklineButtonHeight=height*1/25;
   
   //
   titleFont1 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
@@ -145,10 +163,50 @@ void setup()
 //
 void draw()
 {
+ //Hover-over
+  if ( mouseX>   thinlineButtonX && mouseX<  thinlineButtonX+  thinlineButtonWidth && mouseY>  thinlineButtonY && mouseY<    thinlineButtonY+   thinlineButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(drawingtoolsON==true)rect( thinlineButtonX, thinlineButtonY, thinlineButtonWidth,  thinlineButtonHeight);
+  fill(resetButtonColour);
+  //
+  //Hover-over
+  if ( mouseX>   mediumlineButtonX && mouseX<  mediumlineButtonX+  mediumlineButtonWidth && mouseY>  mediumlineButtonY && mouseY<    mediumlineButtonY+   mediumlineButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(drawingtoolsON==true)rect( mediumlineButtonX, mediumlineButtonY, mediumlineButtonWidth,  mediumlineButtonHeight);
+  fill(resetButtonColour);
+  //
+   //Hover-over
+  if ( mouseX>   thicklineButtonX && mouseX<    thicklineButtonX+    thicklineButtonWidth && mouseY>    thicklineButtonY && mouseY<      thicklineButtonY+    thicklineButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(drawingtoolsON==true)rect(   thicklineButtonX,   thicklineButtonY,   thicklineButtonWidth,    thicklineButtonHeight);
+  fill(resetButtonColour);
+  //
+
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(drawingtoolsON==true)rect( mediumlineButtonX, mediumlineButtonY, mediumlineButtonWidth,  mediumlineButtonHeight);
+  fill(resetButtonColour);
+  //
   //Drawing Tools
    if(drawingtoolsON==true)rect(rectX1, rectY1, rectWidth1, rectHeight1);
    if(drawingtoolsON==true)rect(rectX2, rectY2, rectWidth2, rectHeight2);
    if(drawingtoolsON==true)rect(rectX3, rectY3, rectWidth3, rectHeight3);
+   
+   if(drawingtoolsON==true)ellipse(toolX1, toolY1, tool1Diameter,tool1Diameter);
+   if(drawingtoolsON==true)ellipse(toolX2, toolY2, tool2Diameter,tool2Diameter);
+   if(drawingtoolsON==true)ellipse(toolX3, toolY3, tool3Diameter,tool3Diameter);
+   
  //Layout our text space and typographical features
   rect(titleX1, titleY1, titleWidth1, titleHeight1);
   rect(titleX2, titleY2, titleWidth2, titleHeight2);
@@ -156,7 +214,15 @@ void draw()
   rect(titleX4, titleY4, titleWidth4, titleHeight4);
   //
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
-  if ( drawingtoolsON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY);
+  if ( thinlineON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+  line (mouseX, mouseY, pmouseX, pmouseY); 
+  stroke (10);}
+  if (  mediumlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  line (mouseX, mouseY, pmouseX, pmouseY); 
+  stroke(50);}
+  if ( thicklineON=false  && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  line (mouseX, mouseY, pmouseX, pmouseY); 
+  stroke(100);}
   //
   //Hover-over
   if ( mouseX> drawButtonX && mouseX< drawButtonX+drawButtonWidth && mouseY> drawButtonY && mouseY<  drawButtonY+  drawButtonHeight) {
@@ -248,6 +314,7 @@ void draw()
   text(title5, titleX5, titleY5, titleWidth5, titleHeight5);
   fill(resetDefaultInk);
   //
+   
   
 }//End draw
 //
@@ -275,6 +342,13 @@ void mousePressed()
       draw=false;
     } else {
       draw = true;
+    }
+  }
+   if ( mouseX>thinlineButtonX && mouseX<thinlineButtonX+thinlineButtonWidth && mouseY>thinlineButtonY && mouseY<thinlineButtonY+thinlineButtonHeight ) {
+    if ( thinlineON == false) {
+    thinlineON=true;
+    } else {
+     thinlineON = false;
     }
   }
   //End drawing tools
