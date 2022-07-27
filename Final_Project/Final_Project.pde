@@ -52,8 +52,15 @@ float toolX5,toolY5,tool5Height, tool5Width;
 float rectX6, rectY6, rectWidth6, rectHeight6;
 float tool6X6, tool6Y6,tool6X7, tool6Y7,tool6X8,tool6Y8;
 Boolean stamptoolsON=false;
+float circleStampButtonX,circleStampButtonY, circleStampButtonWidth, circleStampButtonHeight;
+Boolean circleStampON=false;
+float rectStampButtonX,rectStampButtonY, rectStampButtonWidth, rectStampButtonHeight;
+Boolean rectStampON=false;
+float triStampButtonX,triStampButtonY, triStampButtonWidth, triStampButtonHeight;
+Boolean triStampON=false;
 Boolean eraseOn=false;
 float eraseX,eraseY, eraseWidth, eraseHeight;
+
 //
 void setup()
 {
@@ -159,6 +166,22 @@ void setup()
    thicklineButtonWidth=width*1/35;
    thicklineButtonHeight=height*1/25;
    //
+    //Buttons for stamp
+   circleStampButtonX=width*1/10.5;
+   circleStampButtonY=height*1/3;
+   circleStampButtonWidth=width*1/35;
+   circleStampButtonHeight=height*1/25;
+   //
+   rectStampButtonX=width*1/8;
+   rectStampButtonY=height*1/3;
+   rectStampButtonWidth=width*1/35;
+   rectStampButtonHeight=height*1/25;
+   //
+   triStampButtonX=width*1/6.45;
+   triStampButtonY=height*1/3;
+   triStampButtonWidth=width*1/35;
+   triStampButtonHeight=height*1/25;
+   //
    //Stamp Tools
   rectX4=width*1/10.5;
   rectY4=height*1/3;
@@ -188,6 +211,7 @@ void setup()
    tool6Y7=height*1/2.7;
    tool6X8=width*1/6.3;
    tool6Y8=height*1/2.7;
+   //
    //
    //Eraser
    eraseX=width*1/35;
@@ -237,9 +261,35 @@ void draw()
   if(drawingtoolsON==true)rect(   thicklineButtonX,   thicklineButtonY,   thicklineButtonWidth,    thicklineButtonHeight);
   fill(resetButtonColour);
   //
-
+  //Buttons for Stamps
+  //Hover-over
+  if ( mouseX>   circleStampButtonX && mouseX<   circleStampButtonX+    circleStampButtonWidth && mouseY>    circleStampButtonY && mouseY<      circleStampButtonY+    circleStampButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(drawingtoolsON==true)rect( mediumlineButtonX, mediumlineButtonY, mediumlineButtonWidth,  mediumlineButtonHeight);
+  if(circleStampON==true)rect( circleStampButtonX,   circleStampButtonY,   circleStampButtonWidth,    circleStampButtonHeight);
+  fill(resetButtonColour);
+  //
+   //Hover-over
+  if ( mouseX>   rectStampButtonX && mouseX<   rectStampButtonX+    rectStampButtonWidth && mouseY>   rectStampButtonY && mouseY<      rectStampButtonY+   rectStampButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(rectStampON==true)rect( rectStampButtonX,   rectStampButtonY,   rectStampButtonWidth,    rectStampButtonHeight);
+  fill(resetButtonColour);
+  //
+   //Hover-over
+  if ( mouseX>   triStampButtonX && mouseX<   triStampButtonX+    triStampButtonWidth && mouseY>   triStampButtonY && mouseY<      triStampButtonY+   triStampButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(triStampON==true)rect( triStampButtonX,   triStampButtonY,   triStampButtonWidth,    rectStampButtonHeight);
   fill(resetButtonColour);
   //
   //Drawing Tools
