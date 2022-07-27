@@ -63,6 +63,16 @@ float rectStampX, rectStampY, rectStampWidth, rectStampHeight;
 float triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3;
 Boolean eraseOn=false;
 float eraseX,eraseY, eraseWidth, eraseHeight;
+float eraseButtonX1,eraseButtonY1,eraseButtonWidth1,eraseButtonHeight1;
+float blueX, blueY,bluewidth, blueheight;
+float redX, redY,redwidth, redheight;
+float greenX, greenY, greenwidth, greeheight;
+float yellowX, yellowY,yellowwidth, yellowheight;
+float blueButtonX, blueButtonY,blueButtonWidth, blueButtonHeight;
+float redButtonX, redButtonY,redButtonWidth, redButtonHeight;
+float greenButtonX, greenButtonY, greenButtonWidth, greeButtonHeight;
+float yellowButtonX, yellowButtonY,yellowButtonWidth, yellowButtonHeight;
+Boolean colourON=false;
 
 //
 void setup()
@@ -232,10 +242,58 @@ void setup()
    triStampY3=height*1/2.7;
    //
    //Eraser
-   eraseX=width*1/35;
+   eraseX=width*1/10;
    eraseY=height*1/2;
    eraseWidth=width*1/15;
    eraseHeight=height*1/25;
+   //
+   eraseButtonX1=width*1/10;
+   eraseButtonY1=height*1/2;
+   eraseButtonWidth1=width*1/15;
+   eraseButtonHeight1=height*1/25;
+   //Colours
+   //Blue
+   blueX=width*1/10;
+   blueY=height*1/1.5;
+   bluewidth=width*1/40;
+   blueheight=height*1/60;
+   //Red
+   redX=width*1/7.6;
+   redY=height*1/1.5;
+   redwidth=width*1/40;
+   redheight=height*1/60;
+   //Green
+   greenX=width*1/10;
+   greenY=height*1/1.4;
+   greenwidth=width*1/40;
+   greeheight=height*1/60;
+   //Yellow
+   yellowX=width*1/7.6;
+   yellowY=height*1/1.4;
+   yellowwidth=width*1/40;
+   yellowheight=height*1/60;
+   //
+   //Colour Button
+   //Blue
+   blueButtonX=width*1/10;
+   blueButtonY=height*1/1.5;
+   blueButtonWidth=width*1/40;
+   blueButtonHeight=height*1/60;
+   //Red
+   redButtonX=width*1/7.6;
+   redButtonY=height*1/1.5;
+   redButtonWidth=width*1/40;
+   redButtonHeight=height*1/60;
+   //Green
+   greenButtonX=width*1/10;
+   greenButtonY=height*1/1.4;
+   greenButtonWidth=width*1/40;
+   greeButtonHeight=height*1/60;
+   //Yellow
+   yellowButtonX=width*1/7.6;
+   yellowButtonY=height*1/1.4;
+   yellowButtonWidth=width*1/40;
+   yellowButtonHeight=height*1/60;
   //
   titleFont1 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
   titleFont2 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
@@ -330,6 +388,23 @@ void draw()
    //
    //Eraser
    if(eraseOn==true)rect(eraseX,eraseY, eraseWidth, eraseHeight);
+   //Hover-over
+  if ( mouseX>   eraseButtonX1 && mouseX<  eraseButtonX1+  eraseButtonWidth1 && mouseY> eraseButtonY1 && mouseY<    eraseButtonY1+   eraseButtonHeight1) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(eraseOn==true)rect( eraseButtonX1, eraseButtonY1, eraseButtonWidth1,  eraseButtonHeight1);
+  fill(resetButtonColour);
+  //End Eraser
+  //
+  //Colours
+    if(colourON==true)rect( blueX, blueY,bluewidth, blueheight);
+   if(colourON==true)rect(redX, redY,redwidth, redheight);
+   if(colourON==true)rect(greenX, greenY, greenwidth, greeheight);
+   if(colourON==true)rect(yellowX, yellowY,yellowwidth, yellowheight);
+  
  //Layout our text space and typographical features
   rect(titleX1, titleY1, titleWidth1, titleHeight1);
   rect(titleX2, titleY2, titleWidth2, titleHeight2);
@@ -526,6 +601,13 @@ void mousePressed()
     eraseOn=true;
     } else {
      eraseOn = false;
+    }
+  }
+  if ( mouseX>colourButtonX && mouseX<colourButtonX+colourButtonWidth && mouseY>colourButtonY && mouseY<colourButtonY+colourButtonHeight ) {
+    if ( colourON==false) {
+    colourON=true;
+    } else {
+     colourON = false;
     }
   }
   //End drawing tools
