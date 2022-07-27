@@ -64,16 +64,22 @@ float triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3;
 Boolean eraseOn=false;
 float eraseX,eraseY, eraseWidth, eraseHeight;
 float eraseButtonX1,eraseButtonY1,eraseButtonWidth1,eraseButtonHeight1;
-float blueX, blueY,bluewidth, blueheight;
-float redX, redY,redwidth, redheight;
-float greenX, greenY, greenwidth, greeheight;
-float yellowX, yellowY,yellowwidth, yellowheight;
+float blueX, blueY,blueWidth, blueHeight;
+float redX, redY,redWidth, redHeight;
+float greenX, greenY, greenWidth, greeHeight;
+float yellowX, yellowY,yellowWidth, yellowHeight;
 float blueButtonX, blueButtonY,blueButtonWidth, blueButtonHeight;
 float redButtonX, redButtonY,redButtonWidth, redButtonHeight;
-float greenButtonX, greenButtonY, greenButtonWidth, greeButtonHeight;
+float greenButtonX, greenButtonY, greenButtonWidth, greenButtonHeight;
 float yellowButtonX, yellowButtonY,yellowButtonWidth, yellowButtonHeight;
 Boolean colourON=false;
-
+color lightblue=#03CEFF, darkblue=#2303FF, lightred=#FF0505, darkred=#D83F3F, lightgreen=#54FF00, darkgreen=#51CB15, lightyellow=#FAFF0F,darkyellow=#E6EA18;
+Boolean blueON=false, redON=false, greenON=false, yellowON=false;
+float templateX1, templateY1, templateWidth1, templateHeight1;
+float templateX2, templateY2, templateWidth2, templateHeight2;
+float templateButtonX1, templateButtonY1, templateButtonWidth1, templateButtonHeight1;
+float templateButtonX2, templateButtonY2, templateButtonWidth2, templateButtonHeight2;
+Boolean template1ON=false, template2ON=false;
 //
 void setup()
 {
@@ -255,23 +261,23 @@ void setup()
    //Blue
    blueX=width*1/10;
    blueY=height*1/1.5;
-   bluewidth=width*1/40;
-   blueheight=height*1/60;
+   blueWidth=width*1/40;
+   blueHeight=height*1/60;
    //Red
    redX=width*1/7.6;
    redY=height*1/1.5;
-   redwidth=width*1/40;
-   redheight=height*1/60;
+   redWidth=width*1/40;
+   redHeight=height*1/60;
    //Green
    greenX=width*1/10;
    greenY=height*1/1.4;
-   greenwidth=width*1/40;
-   greeheight=height*1/60;
+   greenWidth=width*1/40;
+   greeHeight=height*1/60;
    //Yellow
    yellowX=width*1/7.6;
    yellowY=height*1/1.4;
-   yellowwidth=width*1/40;
-   yellowheight=height*1/60;
+   yellowWidth=width*1/40;
+   yellowHeight=height*1/60;
    //
    //Colour Button
    //Blue
@@ -288,12 +294,23 @@ void setup()
    greenButtonX=width*1/10;
    greenButtonY=height*1/1.4;
    greenButtonWidth=width*1/40;
-   greeButtonHeight=height*1/60;
+   greenButtonHeight=height*1/60;
    //Yellow
    yellowButtonX=width*1/7.6;
    yellowButtonY=height*1/1.4;
    yellowButtonWidth=width*1/40;
    yellowButtonHeight=height*1/60;
+   //
+   //Templates
+   templateButtonX1=width*1/10.5;
+   templateButtonY1=height*1/1.2;
+   templateButtonWidth1=width*1/25;
+   templateButtonHeight1=height*1/25;
+   //
+   templateButtonX2=width*1/7.5;
+   templateButtonY2=height*1/1.2;
+   templateButtonWidth2=width*1/25;
+   templateButtonHeight2=height*1/25;
   //
   titleFont1 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
   titleFont2 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
@@ -400,10 +417,10 @@ void draw()
   //End Eraser
   //
   //Colours
-    if(colourON==true)rect( blueX, blueY,bluewidth, blueheight);
-   if(colourON==true)rect(redX, redY,redwidth, redheight);
-   if(colourON==true)rect(greenX, greenY, greenwidth, greeheight);
-   if(colourON==true)rect(yellowX, yellowY,yellowwidth, yellowheight);
+   if(colourON==true)rect( blueX, blueY,blueWidth, blueHeight);
+   if(colourON==true)rect(redX, redY,redWidth, redHeight);
+   if(colourON==true)rect(greenX, greenY, greenWidth, greeHeight);
+   if(colourON==true)rect(yellowX, yellowY,yellowWidth, yellowHeight);
   
  //Layout our text space and typographical features
   rect(titleX1, titleY1, titleWidth1, titleHeight1);
@@ -424,15 +441,22 @@ void draw()
   triangle( triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3 ); 
   stroke (10);}
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
-  if ( thinlineON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+ //
+  if ( thinlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+  strokeWeight (lineThickness);
   line (mouseX, mouseY, pmouseX, pmouseY); 
-  stroke (10);}
+  strokeWeight(1);
+  }
   if (  mediumlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  strokeWeight(lineThickness);
   line (mouseX, mouseY, pmouseX, pmouseY); 
-  stroke(50);}
-  if ( thicklineON=false  && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  strokeWeight(1);
+  }
+  if ( thicklineON=true  && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  strokeWeight(lineThickness);
   line (mouseX, mouseY, pmouseX, pmouseY); 
-  stroke(100);}
+  strokeWeight(1);
+ }
   //
   //Hover-over
   if ( mouseX> drawButtonX && mouseX< drawButtonX+drawButtonWidth && mouseY> drawButtonY && mouseY<  drawButtonY+  drawButtonHeight) {
@@ -524,8 +548,66 @@ void draw()
   text(title5, titleX5, titleY5, titleWidth5, titleHeight5);
   fill(resetDefaultInk);
   //
-   
-  
+   //Colour Buttons
+   //Hover-over
+  if ( mouseX> blueButtonX && mouseX< blueButtonX+blueButtonWidth && mouseY> blueButtonY && mouseY< blueButtonY+ blueButtonHeight) {
+    buttonFill = lightblue;
+  } else {
+    buttonFill = darkblue;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect( blueButtonX,  blueButtonY,  blueButtonWidth,  blueButtonHeight);
+  fill(resetButtonColour);
+  //
+  //Hover-over
+  if ( mouseX> redButtonX && mouseX< redButtonX+redButtonWidth && mouseY> redButtonY && mouseY< redButtonY+ redButtonHeight) {
+    buttonFill = lightred;
+  } else {
+    buttonFill = darkred;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect( redButtonX,  redButtonY,  redButtonWidth,  redButtonHeight);
+  fill(resetButtonColour);
+   //Hover-over
+  if ( mouseX> greenButtonX && mouseX<  greenButtonX+ greenButtonWidth && mouseY>  greenButtonY && mouseY<  greenButtonY+  greenButtonHeight) {
+    buttonFill = lightgreen;
+  } else {
+    buttonFill = darkgreen;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect(  greenButtonX,  greenButtonY,   greenButtonWidth,  greenButtonHeight);
+  fill(resetButtonColour);
+  //
+  //Hover-over
+  if ( mouseX> yellowButtonX && mouseX<  yellowButtonX+ yellowButtonWidth && mouseY>  yellowButtonY && mouseY<  yellowButtonY+ yellowButtonHeight) {
+    buttonFill = lightyellow;
+  } else {
+    buttonFill = darkyellow;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect(  yellowButtonX, yellowButtonY,  yellowButtonWidth,  yellowButtonHeight);
+  fill(resetButtonColour);
+  //
+  //Template Buttons
+   //Hover-over
+  if ( mouseX> templateButtonX1 && mouseX<  templateButtonX1+ templateButtonWidth1 && mouseY>  templateButtonY1 && mouseY<  templateButtonY1+ templateButtonHeight1) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect(  templateButtonX1, templateButtonY1,  templateButtonWidth1,  templateButtonHeight1);
+  fill(resetButtonColour);
+  //
+  //Hover-over
+  if ( mouseX> templateButtonX2 && mouseX<  templateButtonX2+ templateButtonWidth2 && mouseY>  templateButtonY2 && mouseY<  templateButtonY2+ templateButtonHeight2) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  if(colourON=true)rect(  templateButtonX2, templateButtonY2,  templateButtonWidth2,  templateButtonHeight2);
+  fill(resetButtonColour);
 }//End draw
 //
 void keyPressed() {
@@ -574,6 +656,11 @@ void mousePressed()
     } else {
      thicklineON = false;
     }
+    //
+   if (thinlineON==true) lineThickness=(10);
+   if (mediumlineON==true) lineThickness=(20);
+   if (thicklineON==true) lineThickness=(50);
+   //
   }
   if ( mouseX>circleStampButtonX && mouseX<circleStampButtonX+circleStampButtonWidth && mouseY>circleStampButtonY && mouseY<circleStampButtonY+circleStampButtonHeight ) {
     if ( circleStampON== false) {
@@ -608,6 +695,48 @@ void mousePressed()
     colourON=true;
     } else {
      colourON = false;
+    }
+  }
+  if ( mouseX>blueButtonX && mouseX<blueButtonX+blueButtonWidth && mouseY>blueButtonY && mouseY<blueButtonY+blueButtonHeight ) {
+    if ( blueON==false) {
+    blueON=true;
+    } else {
+     blueON = false;
+    }
+  }
+  if ( mouseX>redButtonX && mouseX<redButtonX+redButtonWidth && mouseY>redButtonY && mouseY<redButtonY+redButtonHeight ) {
+    if ( redON==false) {
+    redON=true;
+    } else {
+     redON = false;
+    }
+  }
+  if ( mouseX>greenButtonX && mouseX<greenButtonX+greenButtonWidth && mouseY>greenButtonY && mouseY<greenButtonY+greenButtonHeight ) {
+    if (greenON==false) {
+    greenON=true;
+    } else {
+     greenON = false;
+    }
+  }
+  if ( mouseX>yellowButtonX && mouseX<yellowButtonX+yellowButtonWidth && mouseY>yellowButtonY && mouseY<yellowButtonY+yellowButtonHeight ) {
+    if (yellowON==false) {
+    yellowON=true;
+    } else {
+     yellowON = false;
+    }
+  }
+   if ( mouseX>templateButtonX1 && mouseX<templateButtonX1+templateButtonWidth1 && mouseY>templateButtonY1 && mouseY<templateButtonY1+templateButtonHeight1 ) {
+    if (template1ON==false) {
+    template1ON=true;
+    } else {
+     template1ON = false;
+    }
+  }
+   if ( mouseX>templateButtonX2 && mouseX<templateButtonX2+templateButtonWidth2 && mouseY>templateButtonY2 && mouseY<templateButtonY2+templateButtonHeight2 ) {
+    if (template2ON==false) {
+    template2ON=true;
+    } else {
+     template2ON = false;
     }
   }
   //End drawing tools
