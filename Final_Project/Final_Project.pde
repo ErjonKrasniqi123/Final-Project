@@ -45,6 +45,15 @@ Boolean mediumlineON=false;
 float thicklineButtonX,thicklineButtonY,thicklineButtonWidth,thicklineButtonHeight;
 Boolean thicklineON=false;
 float lineThickness;
+float rectX4, rectY4, rectWidth4, rectHeight4;
+float toolX4,toolY4,tool4Diameter;
+float rectX5, rectY5, rectWidth5, rectHeight5;
+float toolX5,toolY5,tool5Height, tool5Width;
+float rectX6, rectY6, rectWidth6, rectHeight6;
+float tool6X6, tool6Y6,tool6X7, tool6Y7,tool6X8,tool6Y8;
+Boolean stamptoolsON=false;
+Boolean eraseOn=false;
+float eraseX,eraseY, eraseWidth, eraseHeight;
 //
 void setup()
 {
@@ -149,7 +158,42 @@ void setup()
    thicklineButtonY=height*1/5;
    thicklineButtonWidth=width*1/35;
    thicklineButtonHeight=height*1/25;
-  
+   //
+   //Stamp Tools
+  rectX4=width*1/10.5;
+  rectY4=height*1/3;
+  rectWidth4=width*1/35;
+  rectHeight4=height*1/25;
+  rectX5=width*1/8;
+  rectY5=height*1/3;
+  rectWidth5=width*1/35;
+  rectHeight5=height*1/25;
+  rectX6=width*1/6.45;
+  rectY6=height*1/3;
+  rectWidth6=width*1/35;
+  rectHeight6=height*1/25;
+ 
+  //Stamp Tools
+   toolX4=width*1/9.3;
+   toolY4=height*1/2.8;
+   tool4Diameter=height/100;
+   toolX5=width*1/7.45;
+   toolY5=height*1/2.9;
+   tool5Height=height*1/60;
+   tool5Width=width*1/60;
+   //
+   tool6X6=width*1/6;
+   tool6Y6=height*1/3;
+   tool6X7=width*1/5.6;
+   tool6Y7=height*1/2.7;
+   tool6X8=width*1/6.3;
+   tool6Y8=height*1/2.7;
+   //
+   //Eraser
+   eraseX=width*1/35;
+   eraseY=height*1/2;
+   eraseWidth=width*1/15;
+   eraseHeight=height*1/25;
   //
   titleFont1 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
   titleFont2 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
@@ -206,7 +250,18 @@ void draw()
    if(drawingtoolsON==true)ellipse(toolX1, toolY1, tool1Diameter,tool1Diameter);
    if(drawingtoolsON==true)ellipse(toolX2, toolY2, tool2Diameter,tool2Diameter);
    if(drawingtoolsON==true)ellipse(toolX3, toolY3, tool3Diameter,tool3Diameter);
+   //
+   //Stamp Tools
+   if(stamptoolsON==true)rect(rectX4, rectY4, rectWidth4, rectHeight4);
+   if(stamptoolsON==true)rect(rectX5, rectY5, rectWidth5, rectHeight5);
+   if(stamptoolsON==true)rect(rectX6, rectY6, rectWidth6, rectHeight6);
    
+   if(stamptoolsON==true)ellipse(toolX4, toolY4, tool4Diameter,tool4Diameter);
+   if(stamptoolsON==true)rect(toolX5, toolY5, tool5Width,tool5Height);
+   if(stamptoolsON==true)triangle( tool6X6, tool6Y6,tool6X7, tool6Y7,tool6X8,tool6Y8);
+   //
+   //Eraser
+   if(eraseOn==true)rect(eraseX,eraseY, eraseWidth, eraseHeight);
  //Layout our text space and typographical features
   rect(titleX1, titleY1, titleWidth1, titleHeight1);
   rect(titleX2, titleY2, titleWidth2, titleHeight2);
@@ -338,10 +393,10 @@ void mousePressed()
     }
   }
   if ( mouseX>stampButtonX && mouseX<stampButtonX+stampButtonWidth && mouseY>stampButtonY && mouseY<stampButtonY+stampButtonHeight ) {
-    if ( draw == true ) {
-      draw=false;
+    if ( stamptoolsON == true ) {
+      stamptoolsON=false;
     } else {
-      draw = true;
+      stamptoolsON = true;
     }
   }
    if ( mouseX>thinlineButtonX && mouseX<thinlineButtonX+thinlineButtonWidth && mouseY>thinlineButtonY && mouseY<thinlineButtonY+thinlineButtonHeight ) {
@@ -349,6 +404,27 @@ void mousePressed()
     thinlineON=true;
     } else {
      thinlineON = false;
+    }
+  }
+  if ( mouseX>mediumlineButtonX && mouseX<mediumlineButtonX+mediumlineButtonWidth && mouseY>mediumlineButtonY && mouseY<mediumlineButtonY+mediumlineButtonHeight ) {
+    if ( mediumlineON == false) {
+    mediumlineON=true;
+    } else {
+     mediumlineON = false;
+    }
+  }
+   if ( mouseX>thicklineButtonX && mouseX<thicklineButtonX+thicklineButtonWidth && mouseY>thicklineButtonY && mouseY<thicklineButtonY+thicklineButtonHeight ) {
+    if ( thicklineON == false) {
+    thicklineON=true;
+    } else {
+     thicklineON = false;
+    }
+  }
+  if ( mouseX>eraseButtonX && mouseX<eraseButtonX+eraseButtonWidth && mouseY>eraseButtonY && mouseY<eraseButtonY+eraseButtonHeight ) {
+    if ( eraseOn== false) {
+    eraseOn=true;
+    } else {
+     eraseOn = false;
     }
   }
   //End drawing tools
