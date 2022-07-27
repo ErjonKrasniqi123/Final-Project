@@ -66,7 +66,7 @@ float eraseX,eraseY, eraseWidth, eraseHeight;
 float eraseButtonX1,eraseButtonY1,eraseButtonWidth1,eraseButtonHeight1;
 float blueX, blueY,blueWidth, blueHeight;
 float redX, redY,redWidth, redHeight;
-float greenX, greenY, greenWidth, greeHeight;
+float greenX, greenY, greenWidth, greenHeight;
 float yellowX, yellowY,yellowWidth, yellowHeight;
 float blueButtonX, blueButtonY,blueButtonWidth, blueButtonHeight;
 float redButtonX, redButtonY,redButtonWidth, redButtonHeight;
@@ -80,13 +80,27 @@ float templateX2, templateY2, templateWidth2, templateHeight2;
 float templateButtonX1, templateButtonY1, templateButtonWidth1, templateButtonHeight1;
 float templateButtonX2, templateButtonY2, templateButtonWidth2, templateButtonHeight2;
 Boolean template1ON=false, template2ON=false;
-//
+String title6 = "Lion";
+float titleX6, titleY6, titleWidth6, titleHeight6;
+PFont titleFont6;
+String title7 = "Bug";
+float titleX7, titleY7, titleWidth7, titleHeight7;
+PFont titleFont7;
+Boolean templatesON=false;
+PImage pic1, pic2;
+float imageX1, imageY1, imageWidth1, imageHeight1, imageLargerDimension1, imageSmallerDimension1,imageWidthRatio1=0.0, imageHeightRatio1=0.0; 
+float imageX2, imageY2, imageWidth2, imageHeight2, imageLargerDimension2, imageSmallerDimension2,imageWidthRatio2=0.0, imageHeightRatio2=0.0 ;
+float picWidthAdjusted1, picHeightAdjusted1;
+float picWidthAdjusted2, picHeightAdjusted2;
+Boolean  widthLarger1 = false, heightLarger1 = false;
+Boolean  widthLarger2 = false, heightLarger2 = false;
 void setup()
 {
   //Display Checker
   //Display Orientation Checker
   //Display and CANVAS Checker
   size(1200, 900); //Landscape (Portrait or Square)
+  //
   //
   //Population
   drawingSurfaceX = width*1/5;
@@ -272,7 +286,7 @@ void setup()
    greenX=width*1/10;
    greenY=height*1/1.4;
    greenWidth=width*1/40;
-   greeHeight=height*1/60;
+   greenHeight=height*1/60;
    //Yellow
    yellowX=width*1/7.6;
    yellowY=height*1/1.4;
@@ -311,12 +325,95 @@ void setup()
    templateButtonY2=height*1/1.2;
    templateButtonWidth2=width*1/25;
    templateButtonHeight2=height*1/25;
+ //Text for Templates
+ titleX6=width*1/10.5;
+ titleY6=height*1/1.2;
+ titleWidth6=width*1/25;
+ titleHeight6=height*1/25;
+ //
+ titleX7=width*1/7.5;
+ titleY7=height*1/1.2;
+ titleWidth7=width*1/25;
+ titleHeight7=height*1/25;
+ //
+  pic1 = loadImage("Mosquito-Coloring-Pages-for-Kids.jpg"); //Dimensions: width 1148, height 1600
+  pic2 = loadImage("09781b97957f1f177d8b2b08bab2cc46.png"); //Dimensions: width 718, height 918
+  int picWidth1 = 1148; 
+  int picHeight1 = 1600; 
+  int picWidth2 = 718; 
+  int picHeight2 = 918;  
   //
-  titleFont1 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
-  titleFont2 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
-  titleFont3 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
-  titleFont4 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
-  titleFont5 = createFont("Harrington", 20); //Verify the font exists in Processing.JAVA
+  //
+if ( picWidth1 >= picHeight1) {// Image Dimension Comparison
+  //True if Landscape or Square
+  imageLargerDimension1 = picWidth1;
+  imageSmallerDimension1 = picHeight1;
+  widthLarger1 = true;
+} else {
+  //False if Portrait
+  imageLargerDimension1 = picHeight1;
+  imageSmallerDimension1 = picWidth1;
+  heightLarger1 = true;
+}//End Image Dimension Comparison
+println(imageSmallerDimension1, imageLargerDimension1, widthLarger1, heightLarger1);
+//Aspect Ratio
+//Note: single line IFs can be summarized into IF-ELSE or IF-ElseIF-Else
+//Computer chooses which formulae to execute
+if ( widthLarger1 == true ) imageWidthRatio1 = imageLargerDimension1 / imageLargerDimension1;
+if ( widthLarger1 == true ) imageHeightRatio1 = imageSmallerDimension1 / imageLargerDimension1;
+if ( heightLarger1 == true ) imageWidthRatio1 = imageSmallerDimension1 / imageLargerDimension1;
+if ( heightLarger1== true ) imageHeightRatio1 = imageLargerDimension1 / imageLargerDimension1;
+//Note:
+//Answers must be 1.0 and between 0 & 1 (decimal)
+//Ratio 1.0 similar to style="width:100%" (websites)
+//Ratio of 0-1 similar to style="height:auto" (websites)
+if ( picWidth2 >= picHeight2) {// Image Dimension Comparison
+  //True if Landscape or Square
+  imageLargerDimension2 = picWidth2;
+  imageSmallerDimension2 = picHeight2;
+  widthLarger2 = true;
+} else {
+  //False if Portrait
+  imageLargerDimension2 = picHeight2;
+  imageSmallerDimension2 = picWidth2;
+  heightLarger1 = true;
+}//End Image Dimension Comparison
+println(imageSmallerDimension2, imageLargerDimension2, widthLarger2, heightLarger2);
+//Aspect Ratio
+//Note: single line IFs can be summarized into IF-ELSE or IF-ElseIF-Else
+//Computer chooses which formulae to execute
+if ( widthLarger2 == true ) imageWidthRatio2 = imageLargerDimension2 / imageLargerDimension2;
+if ( widthLarger2 == true ) imageHeightRatio2 = imageSmallerDimension2 / imageLargerDimension2;
+if ( heightLarger2 == true ) imageWidthRatio2 = imageSmallerDimension2 / imageLargerDimension2;
+if ( heightLarger2== true ) imageHeightRatio2 = imageLargerDimension2 / imageLargerDimension2;
+//
+//
+//Population of Rect()
+imageX1 = width*1/5;
+imageY1 = height*1/20;
+imageWidth1 = width*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
+imageHeight1 = height*4/5;
+imageX2 = width*1/5;
+imageY2 = height*1/20;
+imageWidth2 = width*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
+imageHeight2 =height*4/5;
+//
+//Combination of Population of Image with Population of Rect
+//Adjusted Image Variables for Aspect Ratio:(entire image willl be smaller due to aspect ratio)
+picWidthAdjusted1= imageWidth1* imageWidthRatio1;
+picHeightAdjusted1= imageHeight1 * imageHeightRatio1;
+println(imageX1, imageY1, picWidthAdjusted1,  picHeightAdjusted1);//Note: println() also verifies decimal places, complier will trunca
+picWidthAdjusted2= imageWidth2* imageWidthRatio2;
+picHeightAdjusted2= imageHeight2 * imageHeightRatio2;
+println(imageX2, imageY2, picWidthAdjusted2,  picHeightAdjusted2);//Note: println() also verifies decimal places, complier will trunca
+  //
+  titleFont1 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont2 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont3 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont4 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont5 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont6 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont7 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
   //
   rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight );
   //
@@ -419,7 +516,7 @@ void draw()
   //Colours
    if(colourON==true)rect( blueX, blueY,blueWidth, blueHeight);
    if(colourON==true)rect(redX, redY,redWidth, redHeight);
-   if(colourON==true)rect(greenX, greenY, greenWidth, greeHeight);
+   if(colourON==true)rect(greenX, greenY, greenWidth, greenHeight);
    if(colourON==true)rect(yellowX, yellowY,yellowWidth, yellowHeight);
   
  //Layout our text space and typographical features
@@ -596,7 +693,7 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect(  templateButtonX1, templateButtonY1,  templateButtonWidth1,  templateButtonHeight1);
+  if(templatesON=true)rect(  templateButtonX1, templateButtonY1,  templateButtonWidth1,  templateButtonHeight1);
   fill(resetButtonColour);
   //
   //Hover-over
@@ -606,8 +703,30 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect(  templateButtonX2, templateButtonY2,  templateButtonWidth2,  templateButtonHeight2);
+  if(templatesON=true)rect(  templateButtonX2, templateButtonY2,  templateButtonWidth2,  templateButtonHeight2);
   fill(resetButtonColour);
+  //
+  fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont6, titleSize);
+  if(templatesON=true)text(title6, titleX6, titleY6, titleWidth6, titleHeight6);
+  fill(resetDefaultInk);
+  //
+  fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont7, titleSize);
+  if(templatesON=true)text(title7, titleX7, titleY7, titleWidth7, titleHeight7);
+  fill(resetDefaultInk);
+  //
+ if(template1ON=true)rect(imageX1, imageY1, imageWidth1, imageHeight1); //Top Half of CANVAS
+ if(template2ON=true)rect(imageX2, imageY2, imageWidth2, imageHeight2); //Bottom Half of CANVAS
+ //image(pic, imageX, imageY, imageWidth, imageHeight);
+ if(template1ON=true)image(pic1, imageX1, imageY1, picWidthAdjusted1, picHeightAdjusted1);
+ if(template2ON=true)image(pic2, imageX2, imageY2, picWidthAdjusted2, picHeightAdjusted2);
 }//End draw
 //
 void keyPressed() {
@@ -691,7 +810,7 @@ void mousePressed()
     }
   }
   if ( mouseX>colourButtonX && mouseX<colourButtonX+colourButtonWidth && mouseY>colourButtonY && mouseY<colourButtonY+colourButtonHeight ) {
-    if ( colourON==false) {
+    if ( colourON=false) {
     colourON=true;
     } else {
      colourON = false;
@@ -723,6 +842,14 @@ void mousePressed()
     yellowON=true;
     } else {
      yellowON = false;
+    }
+  }
+  //
+   if ( mouseX>templateButtonX && mouseX<templateButtonX+templateButtonWidth && mouseY>templateButtonY && mouseY<templateButtonY+templateButtonHeight ) {
+    if (templatesON==false) {
+    templatesON=true;
+    } else {
+     templatesON = false;
     }
   }
    if ( mouseX>templateButtonX1 && mouseX<templateButtonX1+templateButtonWidth1 && mouseY>templateButtonY1 && mouseY<templateButtonY1+templateButtonHeight1 ) {
