@@ -58,6 +58,9 @@ float rectStampButtonX,rectStampButtonY, rectStampButtonWidth, rectStampButtonHe
 Boolean rectStampON=false;
 float triStampButtonX,triStampButtonY, triStampButtonWidth, triStampButtonHeight;
 Boolean triStampON=false;
+float circleStampX,circleStampY, circleStampDiameter;
+float rectStampX, rectStampY, rectStampWidth, rectStampHeight;
+float triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3;
 Boolean eraseOn=false;
 float eraseX,eraseY, eraseWidth, eraseHeight;
 
@@ -212,6 +215,21 @@ void setup()
    tool6X8=width*1/6.3;
    tool6Y8=height*1/2.7;
    //
+   circleStampX=width*1/9.3;
+   circleStampY=height*1/2.8;
+   circleStampDiameter=height/100;
+   //
+    rectStampX=width*1/7.45;
+   rectStampY=height*1/2.9;
+   rectStampWidth=width*1/60;
+   rectStampHeight=height*1/60;
+   //
+    triStampX1=width*1/6;
+   triStampY1=height*1/3;
+   triStampX2=width*1/5.6;
+   triStampY2=height*1/2.7;
+   triStampX3=width*1/6.3;
+   triStampY3=height*1/2.7;
    //
    //Eraser
    eraseX=width*1/35;
@@ -289,7 +307,7 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(triStampON==true)rect( triStampButtonX,   triStampButtonY,   triStampButtonWidth,    rectStampButtonHeight);
+  if(triStampON==true)rect( triStampButtonX,   triStampButtonY,   triStampButtonWidth,    triStampButtonHeight);
   fill(resetButtonColour);
   //
   //Drawing Tools
@@ -318,6 +336,18 @@ void draw()
   rect(titleX3, titleY3, titleWidth3, titleHeight3);
   rect(titleX4, titleY4, titleWidth4, titleHeight4);
   //
+  //Stamp Tools
+   if ( circleStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+  circle(circleStampX,circleStampY, circleStampDiameter); 
+  stroke (10);}
+  //
+    if ( rectStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+  rect( rectStampX, rectStampY, rectStampWidth, rectStampHeight); 
+  stroke (10);}
+  //
+   if ( triStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
+  triangle( triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3 ); 
+  stroke (10);}
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
   if ( thinlineON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
   line (mouseX, mouseY, pmouseX, pmouseY); 
@@ -468,6 +498,27 @@ void mousePressed()
     thicklineON=true;
     } else {
      thicklineON = false;
+    }
+  }
+  if ( mouseX>circleStampButtonX && mouseX<circleStampButtonX+circleStampButtonWidth && mouseY>circleStampButtonY && mouseY<circleStampButtonY+circleStampButtonHeight ) {
+    if ( circleStampON== false) {
+    circleStampON=true;
+    } else {
+     circleStampON = false;
+    }
+  }
+   if ( mouseX>rectStampButtonX && mouseX<rectStampButtonX+rectStampButtonWidth && mouseY>rectStampButtonY && mouseY<rectStampButtonY+rectStampButtonHeight ) {
+    if ( rectStampON== false) {
+    rectStampON=true;
+    } else {
+     rectStampON = false;
+    }
+  }
+  if ( mouseX>triStampButtonX && mouseX<triStampButtonX+triStampButtonWidth && mouseY>triStampButtonY && mouseY<triStampButtonY+triStampButtonHeight ) {
+    if (triStampON== false) {
+    triStampON=true;
+    } else {
+     triStampON = false;
     }
   }
   if ( mouseX>eraseButtonX && mouseX<eraseButtonX+eraseButtonWidth && mouseY>eraseButtonY && mouseY<eraseButtonY+eraseButtonHeight ) {
