@@ -146,219 +146,219 @@ void setup()
   songMetaData1 = song1.getMetaData();
   //
   //Population
-  drawingSurfaceX = width*1/5;
-  drawingSurfaceY = height*1/20;
-  drawingSurfaceWidth = width*3/5;
-  drawingSurfaceHeight = height*4/5;
-  drawingDiameter = width*1/100;
+  drawingSurfaceX = appWidth*1/5;
+  drawingSurfaceY = appHeight*1/20;
+  drawingSurfaceWidth = appWidth*3/5;
+  drawingSurfaceHeight = appHeight*4/5;
+  drawingDiameter = appWidth*1/100;
   //
-  drawButtonX=width*1/35;
-  drawButtonY=height*1/5;
-  drawButtonWidth=width*1/15;
-  drawButtonHeight=height*1/25;
+  drawButtonX=appWidth*1/35;
+  drawButtonY=appHeight*1/5;
+  drawButtonWidth=appWidth*1/15;
+  drawButtonHeight=appHeight*1/25;
   //
-  stampButtonX=width*1/35;
-  stampButtonY=height*1/3;
-  stampButtonWidth=width*1/15;
-  stampButtonHeight=height*1/25;
+  stampButtonX=appWidth*1/35;
+  stampButtonY=appHeight*1/3;
+  stampButtonWidth=appWidth*1/15;
+  stampButtonHeight=appHeight*1/25;
   //
-  eraseButtonX=width*1/35;
-  eraseButtonY=height*1/2;
-  eraseButtonWidth=width*1/15;
-  eraseButtonHeight=height*1/25;
+  eraseButtonX=appWidth*1/35;
+  eraseButtonY=appHeight*1/2;
+  eraseButtonWidth=appWidth*1/15;
+  eraseButtonHeight=appHeight*1/25;
   //
-  colourButtonX=width*1/35;
-  colourButtonY=height*1/1.5;
-  colourButtonWidth=width*1/15;
-  colourButtonHeight=height*1/25;
+  colourButtonX=appWidth*1/35;
+  colourButtonY=appHeight*1/1.5;
+  colourButtonWidth=appWidth*1/15;
+  colourButtonHeight=appHeight*1/25;
   //
-  templateButtonX=width*1/35;
-  templateButtonY=height*1/1.2;
-  templateButtonWidth=width*1/15;
-  templateButtonHeight=height*1/25;
+  templateButtonX=appWidth*1/35;
+  templateButtonY=appHeight*1/1.2;
+  templateButtonWidth=appWidth*1/15;
+  templateButtonHeight=appHeight*1/25;
   //
-  titleX1 =width*1/35 ;
-  titleY1 = height*1/5;
-  titleWidth1 = width*1/15;
-  titleHeight1 = height*1/25;
+  titleX1 =appWidth*1/35 ;
+  titleY1 = appHeight*1/5;
+  titleWidth1 = appWidth*1/15;
+  titleHeight1 = appHeight*1/25;
   //
-   titleX2 =width*1/35 ;
-  titleY2 = height*1/3;
-  titleWidth2 = width*1/15;
-  titleHeight2= height*1/25;
+   titleX2 =appWidth*1/35 ;
+  titleY2 = appHeight*1/3;
+  titleWidth2 = appWidth*1/15;
+  titleHeight2= appHeight*1/25;
   //
-  titleX3 =width*1/35 ;
-  titleY3 = height*1/2;
-  titleWidth3 = width*1/15;
-  titleHeight3= height*1/25;
+  titleX3 =appWidth*1/35 ;
+  titleY3 = appHeight*1/2;
+  titleWidth3 = appWidth*1/15;
+  titleHeight3= appHeight*1/25;
   //
-  titleX4 =width*1/35 ;
-  titleY4 = height*1/1.5;
-  titleWidth4 = width*1/15;
-  titleHeight4= height*1/25;
+  titleX4 =appWidth*1/35 ;
+  titleY4 = appHeight*1/1.5;
+  titleWidth4 = appWidth*1/15;
+  titleHeight4= appHeight*1/25;
   //
-  titleX5 =width*1/35 ;
-  titleY5 = height*1/1.2;
-  titleWidth5 = width*1/15;
-  titleHeight5= height*1/25;
+  titleX5 =appWidth*1/35 ;
+  titleY5 = appHeight*1/1.2;
+  titleWidth5 = appWidth*1/15;
+  titleHeight5= appHeight*1/25;
   //
   //Drawing Tools
-  rectX1=width*1/10.5;
-  rectY1=height*1/5;
-  rectWidth1=width*1/35;
-  rectHeight1=height*1/25;
-  rectX2=width*1/8;
-  rectY2=height*1/5;
-  rectWidth2=width*1/35;
-  rectHeight2=height*1/25;
-  rectX3=width*1/6.45;
-  rectY3=height*1/5;
-  rectWidth3=width*1/35;
-  rectHeight3=height*1/25;
+  rectX1=appWidth*1/10.5;
+  rectY1=appHeight*1/5;
+  rectWidth1=appWidth*1/35;
+  rectHeight1=appHeight*1/25;
+  rectX2=appWidth*1/8;
+  rectY2=appHeight*1/5;
+  rectWidth2=appWidth*1/35;
+  rectHeight2=appHeight*1/25;
+  rectX3=appWidth*1/6.45;
+  rectY3=appHeight*1/5;
+  rectWidth3=appWidth*1/35;
+  rectHeight3=appHeight*1/25;
  
   //Drawing Tools
-   toolX1=width*1/9.3;
-   toolY1=height*1/4.5;
-   tool1Diameter=height/200;
-   toolX2=width*1/7.2;
-   toolY2=height*1/4.5;
-   tool2Diameter=height/100;
-   toolX3=width*1/5.9;
-   toolY3=height*1/4.5;
-   tool3Diameter=height/50;
+   toolX1=appWidth*1/9.3;
+   toolY1=appHeight*1/4.5;
+   tool1Diameter=appHeight/200;
+   toolX2=appWidth*1/7.2;
+   toolY2=appHeight*1/4.5;
+   tool2Diameter=appHeight/100;
+   toolX3=appWidth*1/5.9;
+   toolY3=appHeight*1/4.5;
+   tool3Diameter=appHeight/50;
    //
-   thinlineButtonX=width*1/10.5;
-   thinlineButtonY=height*1/5;
-   thinlineButtonWidth=width*1/35;
-   thinlineButtonHeight=height*1/25;
+   thinlineButtonX=appWidth*1/10.5;
+   thinlineButtonY=appHeight*1/5;
+   thinlineButtonWidth=appWidth*1/35;
+   thinlineButtonHeight=appHeight*1/25;
    //
-   mediumlineButtonX=width*1/8;
-   mediumlineButtonY=height*1/5;
-   mediumlineButtonWidth=width*1/35;
-   mediumlineButtonHeight=height*1/25;
+   mediumlineButtonX=appWidth*1/8;
+   mediumlineButtonY=appHeight*1/5;
+   mediumlineButtonWidth=appWidth*1/35;
+   mediumlineButtonHeight=appHeight*1/25;
    //
-    thicklineButtonX=width*1/6.45;
-   thicklineButtonY=height*1/5;
-   thicklineButtonWidth=width*1/35;
-   thicklineButtonHeight=height*1/25;
+    thicklineButtonX=appWidth*1/6.45;
+   thicklineButtonY=appHeight*1/5;
+   thicklineButtonWidth=appWidth*1/35;
+   thicklineButtonHeight=appHeight*1/25;
    //
     //Buttons for stamp
-   circleStampButtonX=width*1/10.5;
-   circleStampButtonY=height*1/3;
-   circleStampButtonWidth=width*1/35;
-   circleStampButtonHeight=height*1/25;
+   circleStampButtonX=appWidth*1/10.5;
+   circleStampButtonY=appHeight*1/3;
+   circleStampButtonWidth=appWidth*1/35;
+   circleStampButtonHeight=appHeight*1/25;
    //
-   rectStampButtonX=width*1/8;
-   rectStampButtonY=height*1/3;
-   rectStampButtonWidth=width*1/35;
-   rectStampButtonHeight=height*1/25;
+   rectStampButtonX=appWidth*1/8;
+   rectStampButtonY=appHeight*1/3;
+   rectStampButtonWidth=appWidth*1/35;
+   rectStampButtonHeight=appHeight*1/25;
    //
-   triStampButtonX=width*1/6.45;
-   triStampButtonY=height*1/3;
-   triStampButtonWidth=width*1/35;
-   triStampButtonHeight=height*1/25;
+   triStampButtonX=appWidth*1/6.45;
+   triStampButtonY=appHeight*1/3;
+   triStampButtonWidth=appWidth*1/35;
+   triStampButtonHeight=appHeight*1/25;
    //
    //Stamp Tools
-  rectX4=width*1/10.5;
-  rectY4=height*1/3;
-  rectWidth4=width*1/35;
-  rectHeight4=height*1/25;
-  rectX5=width*1/8;
-  rectY5=height*1/3;
-  rectWidth5=width*1/35;
-  rectHeight5=height*1/25;
-  rectX6=width*1/6.45;
-  rectY6=height*1/3;
-  rectWidth6=width*1/35;
-  rectHeight6=height*1/25;
+  rectX4=appWidth*1/10.5;
+  rectY4=appHeight*1/3;
+  rectWidth4=appWidth*1/35;
+  rectHeight4=appHeight*1/25;
+  rectX5=appWidth*1/8;
+  rectY5=appHeight*1/3;
+  rectWidth5=appWidth*1/35;
+  rectHeight5=appHeight*1/25;
+  rectX6=appWidth*1/6.45;
+  rectY6=appHeight*1/3;
+  rectWidth6=appWidth*1/35;
+  rectHeight6=appHeight*1/25;
  
   //Stamp Tools
-   toolX4=width*1/9.3;
-   toolY4=height*1/2.8;
-   tool4Diameter=height/100;
-   toolX5=width*1/7.45;
-   toolY5=height*1/2.9;
-   tool5Height=height*1/60;
-   tool5Width=width*1/60;
+   toolX4=appWidth*1/9.3;
+   toolY4=appHeight*1/2.8;
+   tool4Diameter=appHeight/100;
+   toolX5=appWidth*1/7.45;
+   toolY5=appHeight*1/2.9;
+   tool5Height=appHeight*1/60;
+   tool5Width=appWidth*1/60;
    //
-   tool6X6=width*1/6;
-   tool6Y6=height*1/3;
-   tool6X7=width*1/5.6;
-   tool6Y7=height*1/2.7;
-   tool6X8=width*1/6.3;
-   tool6Y8=height*1/2.7;
+   tool6X6=appWidth*1/6;
+   tool6Y6=appHeight*1/3;
+   tool6X7=appWidth*1/5.6;
+   tool6Y7=appHeight*1/2.7;
+   tool6X8=appWidth*1/6.3;
+   tool6Y8=appHeight*1/2.7;
    //
-   circleStampX=width*1/9.3;
-   circleStampY=height*1/2.8;
-   circleStampDiameter=height/100;
+   circleStampX=appWidth*1/9.3;
+   circleStampY=appHeight*1/2.8;
+   circleStampDiameter=appHeight/100;
    //
-    rectStampX=width*1/7.45;
-   rectStampY=height*1/2.9;
-   rectStampWidth=width*1/60;
-   rectStampHeight=height*1/60;
+    rectStampX=appWidth*1/7.45;
+   rectStampY=appHeight*1/2.9;
+   rectStampWidth=appWidth*1/60;
+   rectStampHeight=appHeight*1/60;
    //
-    triStampX1=width*1/6;
-   triStampY1=height*1/3;
-   triStampX2=width*1/5.6;
-   triStampY2=height*1/2.7;
-   triStampX3=width*1/6.3;
-   triStampY3=height*1/2.7;
+    triStampX1=appWidth*1/6;
+   triStampY1=appHeight*1/3;
+   triStampX2=appWidth*1/5.6;
+   triStampY2=appHeight*1/2.7;
+   triStampX3=appWidth*1/6.3;
+   triStampY3=appHeight*1/2.7;
    //
    //Eraser
-   eraseX=width*1/10;
-   eraseY=height*1/2;
-   eraseWidth=width*1/15;
-   eraseHeight=height*1/25;
+   eraseX=appWidth*1/10;
+   eraseY=appHeight*1/2;
+   eraseWidth=appWidth*1/15;
+   eraseHeight=appHeight*1/25;
    //
-   eraseButtonX1=width*1/10;
-   eraseButtonY1=height*1/2;
-   eraseButtonWidth1=width*1/15;
-   eraseButtonHeight1=height*1/25;
+   eraseButtonX1=appWidth*1/10;
+   eraseButtonY1=appHeight*1/2;
+   eraseButtonWidth1=appWidth*1/15;
+   eraseButtonHeight1=appHeight*1/25;
    //Colours
   
    //
    //Colour Button
    //Blue
-   blueButtonX=width*1/10;
-   blueButtonY=height*1/1.5;
-   blueButtonWidth=width*1/40;
-   blueButtonHeight=height*1/60;
+   blueButtonX=appWidth*1/10;
+   blueButtonY=appHeight*1/1.5;
+   blueButtonWidth=appWidth*1/40;
+   blueButtonHeight=appHeight*1/60;
    //Red
-   redButtonX=width*1/7.6;
-   redButtonY=height*1/1.5;
-   redButtonWidth=width*1/40;
-   redButtonHeight=height*1/60;
+   redButtonX=appWidth*1/7.6;
+   redButtonY=appHeight*1/1.5;
+   redButtonWidth=appWidth*1/40;
+   redButtonHeight=appHeight*1/60;
    //Green
-   greenButtonX=width*1/10;
-   greenButtonY=height*1/1.4;
-   greenButtonWidth=width*1/40;
-   greenButtonHeight=height*1/60;
+   greenButtonX=appWidth*1/10;
+   greenButtonY=appHeight*1/1.4;
+   greenButtonWidth=appWidth*1/40;
+   greenButtonHeight=appHeight*1/60;
    //Yellow
-   yellowButtonX=width*1/7.6;
-   yellowButtonY=height*1/1.4;
-   yellowButtonWidth=width*1/40;
-   yellowButtonHeight=height*1/60;
+   yellowButtonX=appWidth*1/7.6;
+   yellowButtonY=appHeight*1/1.4;
+   yellowButtonWidth=appWidth*1/40;
+   yellowButtonHeight=appHeight*1/60;
    //
    //Templates
-   templateButtonX1=width*1/10.5;
-   templateButtonY1=height*1/1.2;
-   templateButtonWidth1=width*1/25;
-   templateButtonHeight1=height*1/25;
+   templateButtonX1=appWidth*1/10.5;
+   templateButtonY1=appHeight*1/1.2;
+   templateButtonWidth1=appWidth*1/25;
+   templateButtonHeight1=appHeight*1/25;
    //
-   templateButtonX2=width*1/7.5;
-   templateButtonY2=height*1/1.2;
-   templateButtonWidth2=width*1/25;
-   templateButtonHeight2=height*1/25;
+   templateButtonX2=appWidth*1/7.5;
+   templateButtonY2=appHeight*1/1.2;
+   templateButtonWidth2=appWidth*1/25;
+   templateButtonHeight2=appHeight*1/25;
  //Text for Templates
- titleX6=width*1/10.5;
- titleY6=height*1/1.2;
- titleWidth6=width*1/25;
- titleHeight6=height*1/25;
+ titleX6=appWidth*1/10.5;
+ titleY6=appHeight*1/1.2;
+ titleWidth6=appWidth*1/25;
+ titleHeight6=appHeight*1/25;
  //
- titleX7=width*1/7.5;
- titleY7=height*1/1.2;
- titleWidth7=width*1/25;
- titleHeight7=height*1/25;
+ titleX7=appWidth*1/7.5;
+ titleY7=appHeight*1/1.2;
+ titleWidth7=appWidth*1/25;
+ titleHeight7=appHeight*1/25;
  //
   pic1 = loadImage("175-Free-Cartoon-Owl-Coloring-Page-Clipart.png"); //Dimensions: width 3281, height 3200
   pic2 = loadImage("clipart-milk-splash-9.png"); //Dimensions: width 1983, height 1752
@@ -413,14 +413,14 @@ if ( heightLarger2== true ) imageHeightRatio2 = imageLargerDimension2 / imageLar
 //
 //
 //Population of Rect()
-imageX1 = width*1/5;
-imageY1 = height*1/20;
-imageWidth1 = width*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
-imageHeight1 = height*4/5;
-imageX2 = width*1/5;
-imageY2 = height*1/20;
-imageWidth2 = width*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
-imageHeight2 =height*4/5;
+imageX1 = appWidth*1/5;
+imageY1 = appHeight*1/20;
+imageWidth1 = appWidth*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
+imageHeight1 = appHeight*4/5;
+imageX2 = appWidth*1/5;
+imageY2 = appHeight*1/20;
+imageWidth2 = appWidth*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
+imageHeight2 =appHeight*4/5;
 //
 //Combination of Population of Image with Population of Rect
 //Adjusted Image Variables for Aspect Ratio:(entire image willl be smaller due to aspect ratio)
@@ -431,31 +431,31 @@ picWidthAdjusted2= imageWidth2* imageWidthRatio2;
 picHeightAdjusted2= imageHeight2 * imageHeightRatio2;
 println(imageX2, imageY2, picWidthAdjusted2,  picHeightAdjusted2);//Note: println() also verifies decimal places, complier will trunca
 //
-playButtonX=width*1/1.1;
-playButtonY=height*1/1.5;
-playButtonWidth=width*1/20;
-playButtonHeight=height*1/20;
+playButtonX=appWidth*1/1.1;
+playButtonY=appHeight*1/1.5;
+playButtonWidth=appWidth*1/20;
+playButtonHeight=appHeight*1/20;
 //
-pauseButtonX=width*1/1.2;
-pauseButtonY=height*1/1.5;
-pauseButtonWidth=width*1/20;
-pauseButtonHeight=height*1/20;
+pauseButtonX=appWidth*1/1.2;
+pauseButtonY=appHeight*1/1.5;
+pauseButtonWidth=appWidth*1/20;
+pauseButtonHeight=appHeight*1/20;
 //
 //Play and Restart Songs
-titleX8=width*1/1.1;
-titleY8=height*1/1.5;
-titleWidth8=width*1/20;
-titleHeight8=height*1/20;
+titleX8=appWidth*1/1.1;
+titleY8=appHeight*1/1.5;
+titleWidth8=appWidth*1/20;
+titleHeight8=appHeight*1/20;
 //
-titleX9=width*1/1.2;
-titleY9=height*1/1.5;
-titleWidth9=width*1/20;
-titleHeight9=height*1/20;
+titleX9=appWidth*1/1.2;
+titleY9=appHeight*1/1.5;
+titleWidth9=appWidth*1/20;
+titleHeight9=appHeight*1/20;
 //
-titleX10=width*1/1.2;
-titleY10=height*1/2;
-titleWidth10=width*1/6;
-titleHeight10=height*1/6;
+titleX10=appWidth*1/1.2;
+titleY10=appHeight*1/2;
+titleWidth10=appWidth*1/6;
+titleHeight10=appHeight*1/6;
   //
   titleFont1 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
   titleFont2 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
