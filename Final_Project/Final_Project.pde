@@ -646,7 +646,7 @@ image(pic3, imageX3, imageY3, picWidthAdjusted3, picHeightAdjusted3);
   stroke (10);}
   //
    if ( triStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
-  triangle( mouseX, mouseY,triStampX1, triStampY1,triStampX2, triStampY2 ); 
+  triangle( mouseX, mouseY,triStampX2, triStampY2,triStampX3, triStampY3); 
   stroke(10);}
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
  //
