@@ -8,8 +8,10 @@ import ddf.minim.ugens.*;
 
 //Global Variables
 Minim minim;
-AudioPlayer song1;
+AudioPlayer song1, song2;
 AudioMetaData songMetaData1;
+//
+
 //
 Boolean playON=false, pauseON=true; 
 //
@@ -147,6 +149,8 @@ void setup()
   minim = new Minim(this);
   song1 = minim.loadFile("Coast - Anno Domini Beats.mp3");
   songMetaData1 = song1.getMetaData();
+  //
+   song2 = minim.loadFile("Xylophone Tip Toe Scale Up.mp3");
   //
   //Population
   drawingSurfaceX = appWidth*1/5;
@@ -861,6 +865,9 @@ image(pic3, imageX3, imageY3, picWidthAdjusted3, picHeightAdjusted3);
   textFont(titleFont10, titleSize);
   text(title10, titleX10, titleY10, titleWidth10, titleHeight10);
   fill(resetDefaultInk);
+  //
+ 
+ 
 }//End draw
 //
 void keyPressed()
@@ -868,6 +875,14 @@ void keyPressed()
   if (key=='q' || key=='Q') exit();
    if ( key=='f' || key=='F' ) song1.skip(1000); // skip forward 1 second (1000 milliseconds)
   if ( key=='r' || key=='R' ) song1.skip(-1000); // skip backwards 1 second (1000 milliseconds)
+  if( key=='m' ) { //LOOP Function Once
+    if ( key=='m' ) println("Looping Once");
+    String keystr = String.valueOf(key);
+    println("Number of Repeats is", keystr);
+    int loopNum = int(keystr);
+    song2.loop(loopNum); //Parameter is Parameter is number of repeats
+    //if (
+  }//End LOOP Function Once
 }//End keyPressed
 //
 void mousePressed()
@@ -1033,5 +1048,7 @@ void mousePressed()
       song1.play();
     }
   }
-  //End drawing tools
-}//End mousePressed
+}
+  //
+//End mousePressed
+//End main program
