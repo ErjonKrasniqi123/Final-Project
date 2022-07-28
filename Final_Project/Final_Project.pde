@@ -89,13 +89,16 @@ String title7 = "Owl";
 float titleX7, titleY7, titleWidth7, titleHeight7;
 PFont titleFont7;
 Boolean templatesON=false;
-PImage pic1, pic2;
+PImage pic1, pic2, pic3;
 float imageX1, imageY1, imageWidth1, imageHeight1, imageLargerDimension1, imageSmallerDimension1,imageWidthRatio1=0.0, imageHeightRatio1=0.0; 
 float imageX2, imageY2, imageWidth2, imageHeight2, imageLargerDimension2, imageSmallerDimension2,imageWidthRatio2=0.0, imageHeightRatio2=0.0 ;
+float imageX3, imageY3, imageWidth3, imageHeight3, imageLargerDimension3, imageSmallerDimension3,imageWidthRatio3=0.0, imageHeightRatio3=0.0; 
 float picWidthAdjusted1, picHeightAdjusted1;
 float picWidthAdjusted2, picHeightAdjusted2;
+float picWidthAdjusted3, picHeightAdjusted3;
 Boolean  widthLarger1 = false, heightLarger1 = false;
 Boolean  widthLarger2 = false, heightLarger2 = false;
+Boolean  widthLarger3 = false, heightLarger3 = false;
 float playButtonX, playButtonY,playButtonWidth,playButtonHeight;
 float pauseButtonX, pauseButtonY,pauseButtonWidth,pauseButtonHeight;
 String title8 = "Stop/ Restart";
@@ -362,10 +365,13 @@ void setup()
  //
   pic1 = loadImage("175-Free-Cartoon-Owl-Coloring-Page-Clipart.png"); //Dimensions: width 3281, height 3200
   pic2 = loadImage("clipart-milk-splash-9.png"); //Dimensions: width 1983, height 1752
+  pic3 = loadImage("EFpencils-5bd6784746e0fb00514c3908.png"); //Dimensions: width 300, height 198
   int picWidth1 = 3281; 
   int picHeight1 = 3200; 
   int picWidth2 = 1983; 
-  int picHeight2 = 1752;  
+  int picHeight2 = 1752; 
+  int picWidth3 = 300; 
+  int picHeight3 = 198; 
   //
   //
 if ( picWidth1 >= picHeight1) {// Image Dimension Comparison
@@ -400,7 +406,7 @@ if ( picWidth2 >= picHeight2) {// Image Dimension Comparison
   //False if Portrait
   imageLargerDimension2 = picHeight2;
   imageSmallerDimension2 = picWidth2;
-  heightLarger1 = true;
+  heightLarger2 = true;
 }//End Image Dimension Comparison
 println(imageSmallerDimension2, imageLargerDimension2, widthLarger2, heightLarger2);
 //Aspect Ratio
@@ -410,6 +416,26 @@ if ( widthLarger2 == true ) imageWidthRatio2 = imageLargerDimension2 / imageLarg
 if ( widthLarger2 == true ) imageHeightRatio2 = imageSmallerDimension2 / imageLargerDimension2;
 if ( heightLarger2 == true ) imageWidthRatio2 = imageSmallerDimension2 / imageLargerDimension2;
 if ( heightLarger2== true ) imageHeightRatio2 = imageLargerDimension2 / imageLargerDimension2;
+//
+if ( picWidth3 >= picHeight3) {// Image Dimension Comparison
+  //True if Landscape or Square
+  imageLargerDimension3 = picWidth3;
+  imageSmallerDimension3 = picHeight3;
+  widthLarger2 = true;
+} else {
+  //False if Portrait
+  imageLargerDimension3 = picHeight3;
+  imageSmallerDimension3 = picWidth3;
+  heightLarger3 = true;
+}//End Image Dimension Comparison
+println(imageSmallerDimension3, imageLargerDimension3, widthLarger3, heightLarger3);
+//Aspect Ratio
+//Note: single line IFs can be summarized into IF-ELSE or IF-ElseIF-Else
+//Computer chooses which formulae to execute
+if ( widthLarger3 == true ) imageWidthRatio3 = imageLargerDimension3 / imageLargerDimension3;
+if ( widthLarger3 == true ) imageHeightRatio3 = imageSmallerDimension3 / imageLargerDimension3;
+if ( heightLarger3 == true ) imageWidthRatio3 = imageSmallerDimension3 / imageLargerDimension3;
+if ( heightLarger3== true ) imageHeightRatio3 = imageLargerDimension3/ imageLargerDimension3;
 //
 //
 //Population of Rect()
@@ -421,6 +447,10 @@ imageX2 = appWidth*1/5;
 imageY2 = appHeight*1/20;
 imageWidth2 = appWidth*3/5;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
 imageHeight2 =appHeight*4/5;
+imageX3 = appWidth*1/1.2;
+imageY3 = appHeight*1/8;
+imageWidth3 = appWidth*1/8;//CANVAS (0,0) means point doesn't match to rectangle, missing outline on two sides
+imageHeight3 =appHeight*1/4;
 //
 //Combination of Population of Image with Population of Rect
 //Adjusted Image Variables for Aspect Ratio:(entire image willl be smaller due to aspect ratio)
@@ -430,6 +460,9 @@ println(imageX1, imageY1, picWidthAdjusted1,  picHeightAdjusted1);//Note: printl
 picWidthAdjusted2= imageWidth2* imageWidthRatio2;
 picHeightAdjusted2= imageHeight2 * imageHeightRatio2;
 println(imageX2, imageY2, picWidthAdjusted2,  picHeightAdjusted2);//Note: println() also verifies decimal places, complier will trunca
+picWidthAdjusted3= imageWidth3* imageWidthRatio3;
+picHeightAdjusted3= imageHeight3 * imageHeightRatio3;
+println(imageX3, imageY3, picWidthAdjusted3,  picHeightAdjusted3);//Note: println() also verifies decimal places, complier will trunca
 //
 playButtonX=appWidth*1/1.1;
 playButtonY=appHeight*1/1.5;
@@ -494,9 +527,11 @@ void draw()
   //
 //if(template1ON=true)rect(imageX1, imageY1, imageWidth1, imageHeight1); //Top Half of CANVAS
  //if(template2ON=true)rect(imageX2, imageY2, imageWidth2, imageHeight2); //Bottom Half of CANVAS
+ rect(imageX3, imageY3, imageWidth3, imageHeight3); 
  //image(pic, imageX, imageY, imageWidth, imageHeight);
  //if(template1ON=true)image(pic1, imageX1, imageY1, picWidthAdjusted1, picHeightAdjusted1);
  //if(template2ON=true)image(pic2, imageX2, imageY2, picWidthAdjusted2, picHeightAdjusted2);
+image(pic3, imageX3, imageY3, picWidthAdjusted3, picHeightAdjusted3);
  //Hover-over
   if ( mouseX>   thinlineButtonX && mouseX<  thinlineButtonX+  thinlineButtonWidth && mouseY>  thinlineButtonY && mouseY<    thinlineButtonY+   thinlineButtonHeight) {
     buttonFill = grey;
@@ -607,8 +642,8 @@ void draw()
   stroke (10);}
   //
    if ( triStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
-  triangle( mouseX, mouseY,triStampX2, triStampY2,triStampX3, triStampY3 ); 
-  stroke (10);}
+  triangle( mouseX, mouseY,triStampX1, triStampY1,triStampX2, triStampY2 ); 
+  stroke(10);}
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
  //
   if ( thinlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
@@ -831,6 +866,8 @@ void draw()
 void keyPressed()
 {
   if (key=='q' || key=='Q') exit();
+   if ( key=='f' || key=='F' ) song1.skip(1000); // skip forward 1 second (1000 milliseconds)
+  if ( key=='r' || key=='R' ) song1.skip(-1000); // skip backwards 1 second (1000 milliseconds)
 }//End keyPressed
 //
 void mousePressed()
@@ -863,6 +900,7 @@ void mousePressed()
      thinlineON = false;
     }
   }
+   if (thinlineON==true) lineThickness=(10);
   if ( mouseX>mediumlineButtonX && mouseX<mediumlineButtonX+mediumlineButtonWidth && mouseY>mediumlineButtonY && mouseY<mediumlineButtonY+mediumlineButtonHeight ) {
     if ( mediumlineON == false) {
     mediumlineON=true;
@@ -870,15 +908,13 @@ void mousePressed()
      mediumlineON = false;
     }
   }
+   if (mediumlineON==true) lineThickness=(20);
    if ( mouseX>thicklineButtonX && mouseX<thicklineButtonX+thicklineButtonWidth && mouseY>thicklineButtonY && mouseY<thicklineButtonY+thicklineButtonHeight ) {
     if ( thicklineON == false) {
     thicklineON=true;
     } else {
      thicklineON = false;
     }
-    //
- if (thinlineON==true) lineThickness=(10);
- if (mediumlineON==true) lineThickness=(20);
  if (thicklineON==true) lineThickness=(50);
    //
   }
@@ -889,6 +925,8 @@ void mousePressed()
      circleStampON = false;
     }
   }
+    if(circleStampON==true);fill(black);
+    
    if ( mouseX>rectStampButtonX && mouseX<rectStampButtonX+rectStampButtonWidth && mouseY>rectStampButtonY && mouseY<rectStampButtonY+rectStampButtonHeight ) {
     if ( rectStampON== false) {
     rectStampON=true;
@@ -896,6 +934,8 @@ void mousePressed()
      rectStampON = false;
     }
   }
+  if(rectStampON==true);fill(black);
+  
   if ( mouseX>triStampButtonX && mouseX<triStampButtonX+triStampButtonWidth && mouseY>triStampButtonY && mouseY<triStampButtonY+triStampButtonHeight ) {
     if (triStampON== false) {
     triStampON=true;
@@ -903,9 +943,9 @@ void mousePressed()
      triStampON = false;
     }
   }
-  if(circleStampON==true)stroke(1);fill(black);
-  if(rectStampON==true)stroke(1);fill(black);
-  if(triStampON==true)stroke(1);fill(black);
+
+  if(triStampON==true);fill(black);
+  //
   if ( mouseX>eraseButtonX && mouseX<eraseButtonX+eraseButtonWidth && mouseY>eraseButtonY && mouseY<eraseButtonY+eraseButtonHeight ) {
     if ( eraseOn== false) {
     eraseOn=true;
