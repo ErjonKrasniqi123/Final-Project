@@ -7,6 +7,12 @@ import ddf.minim.ugens.*;
 
 
 //Global Variables
+Minim minim;
+AudioPlayer song1;
+AudioMetaData songMetaData1;
+//
+Boolean playON=false, pauseON=true; 
+//
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight, drawingDiameter;
 Boolean draw=false;
 float drawButtonX,drawButtonY,drawButtonWidth,drawButtonHeight;
@@ -64,15 +70,11 @@ float triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3;
 Boolean eraseOn=false;
 float eraseX,eraseY, eraseWidth, eraseHeight;
 float eraseButtonX1,eraseButtonY1,eraseButtonWidth1,eraseButtonHeight1;
-float blueX, blueY,blueWidth, blueHeight;
-float redX, redY,redWidth, redHeight;
-float greenX, greenY, greenWidth, greenHeight;
-float yellowX, yellowY,yellowWidth, yellowHeight;
+Boolean colorSelectON=false;
 float blueButtonX, blueButtonY,blueButtonWidth, blueButtonHeight;
 float redButtonX, redButtonY,redButtonWidth, redButtonHeight;
 float greenButtonX, greenButtonY, greenButtonWidth, greenButtonHeight;
 float yellowButtonX, yellowButtonY,yellowButtonWidth, yellowButtonHeight;
-Boolean colourON=false;
 color lightblue=#03CEFF, darkblue=#2303FF, lightred=#FF0505, darkred=#D83F3F, lightgreen=#54FF00, darkgreen=#51CB15, lightyellow=#FAFF0F,darkyellow=#E6EA18;
 Boolean blueON=false, redON=false, greenON=false, yellowON=false;
 float templateX1, templateY1, templateWidth1, templateHeight1;
@@ -80,10 +82,10 @@ float templateX2, templateY2, templateWidth2, templateHeight2;
 float templateButtonX1, templateButtonY1, templateButtonWidth1, templateButtonHeight1;
 float templateButtonX2, templateButtonY2, templateButtonWidth2, templateButtonHeight2;
 Boolean template1ON=false, template2ON=false;
-String title6 = "Lion";
+String title6 = "Spill";
 float titleX6, titleY6, titleWidth6, titleHeight6;
 PFont titleFont6;
-String title7 = "Bug";
+String title7 = "Owl";
 float titleX7, titleY7, titleWidth7, titleHeight7;
 PFont titleFont7;
 Boolean templatesON=false;
@@ -94,6 +96,19 @@ float picWidthAdjusted1, picHeightAdjusted1;
 float picWidthAdjusted2, picHeightAdjusted2;
 Boolean  widthLarger1 = false, heightLarger1 = false;
 Boolean  widthLarger2 = false, heightLarger2 = false;
+float playButtonX, playButtonY,playButtonWidth,playButtonHeight;
+float pauseButtonX, pauseButtonY,pauseButtonWidth,pauseButtonHeight;
+String title8 = "Stop/ Restart";
+float titleX8, titleY8, titleWidth8, titleHeight8;
+PFont titleFont8;
+String title9 = "Play";
+float titleX9, titleY9, titleWidth9, titleHeight9;
+PFont titleFont9;
+String title10 = "SongTitle: Coast, Length:2:36,Rating:Unrated";
+float titleX10, titleY10, titleWidth10, titleHeight10;
+PFont titleFont10;
+color backgroundColour=#BCBCBC;
+float resetStrokeWeight;
 void setup()
 {
   //Display Checker
@@ -101,6 +116,34 @@ void setup()
   //Display and CANVAS Checker
   size(1200, 900); //Landscape (Portrait or Square)
   //
+  background(backgroundColour);
+  //
+  println (width, height, displayWidth, displayHeight);
+  int appWidth = width;
+  int appHeight = height;
+  if (width > displayWidth || height > displayHeight) {//CANVAS in Display Checker
+    //CANVAS Too Big
+    appWidth =displayWidth;
+    appHeight = displayHeight;
+    println ("CANVAS needed to be readjusted to fit on your monitor.");
+  } else {
+    println("CANVAS is Good to go on your display.");
+  }//End CANVAS in Display Checker
+  //Display Orientation
+  String ls = "Landscape or Square", p="portrait", DO="Display Orientation", instruct="Bru turn your phun";
+  String orientation = ( appWidth>=appHeight) ? ls : p; //Ternary Operator, repeats the IF-Else structure to populated a variable
+  println( DO, orientation );
+  if ( orientation==ls ) {//Test for chosen display orientation
+    println("Good to go");
+  } else {
+    appWidth *=0; //assignment operator, words like appWidth=appWidth*0
+    appHeight *=0;
+    println(instruct);
+  }
+  //
+  minim = new Minim(this);
+  song1 = minim.loadFile("Coast - Anno Domini Beats.mp3");
+  songMetaData1 = song1.getMetaData();
   //
   //Population
   drawingSurfaceX = width*1/5;
@@ -272,26 +315,7 @@ void setup()
    eraseButtonWidth1=width*1/15;
    eraseButtonHeight1=height*1/25;
    //Colours
-   //Blue
-   blueX=width*1/10;
-   blueY=height*1/1.5;
-   blueWidth=width*1/40;
-   blueHeight=height*1/60;
-   //Red
-   redX=width*1/7.6;
-   redY=height*1/1.5;
-   redWidth=width*1/40;
-   redHeight=height*1/60;
-   //Green
-   greenX=width*1/10;
-   greenY=height*1/1.4;
-   greenWidth=width*1/40;
-   greenHeight=height*1/60;
-   //Yellow
-   yellowX=width*1/7.6;
-   yellowY=height*1/1.4;
-   yellowWidth=width*1/40;
-   yellowHeight=height*1/60;
+  
    //
    //Colour Button
    //Blue
@@ -336,12 +360,12 @@ void setup()
  titleWidth7=width*1/25;
  titleHeight7=height*1/25;
  //
-  pic1 = loadImage("Mosquito-Coloring-Pages-for-Kids.jpg"); //Dimensions: width 1148, height 1600
-  pic2 = loadImage("09781b97957f1f177d8b2b08bab2cc46.png"); //Dimensions: width 718, height 918
-  int picWidth1 = 1148; 
-  int picHeight1 = 1600; 
-  int picWidth2 = 718; 
-  int picHeight2 = 918;  
+  pic1 = loadImage("175-Free-Cartoon-Owl-Coloring-Page-Clipart.png"); //Dimensions: width 3281, height 3200
+  pic2 = loadImage("clipart-milk-splash-9.png"); //Dimensions: width 1983, height 1752
+  int picWidth1 = 3281; 
+  int picHeight1 = 3200; 
+  int picWidth2 = 1983; 
+  int picHeight2 = 1752;  
   //
   //
 if ( picWidth1 >= picHeight1) {// Image Dimension Comparison
@@ -406,6 +430,32 @@ println(imageX1, imageY1, picWidthAdjusted1,  picHeightAdjusted1);//Note: printl
 picWidthAdjusted2= imageWidth2* imageWidthRatio2;
 picHeightAdjusted2= imageHeight2 * imageHeightRatio2;
 println(imageX2, imageY2, picWidthAdjusted2,  picHeightAdjusted2);//Note: println() also verifies decimal places, complier will trunca
+//
+playButtonX=width*1/1.1;
+playButtonY=height*1/1.5;
+playButtonWidth=width*1/20;
+playButtonHeight=height*1/20;
+//
+pauseButtonX=width*1/1.2;
+pauseButtonY=height*1/1.5;
+pauseButtonWidth=width*1/20;
+pauseButtonHeight=height*1/20;
+//
+//Play and Restart Songs
+titleX8=width*1/1.1;
+titleY8=height*1/1.5;
+titleWidth8=width*1/20;
+titleHeight8=height*1/20;
+//
+titleX9=width*1/1.2;
+titleY9=height*1/1.5;
+titleWidth9=width*1/20;
+titleHeight9=height*1/20;
+//
+titleX10=width*1/1.2;
+titleY10=height*1/2;
+titleWidth10=width*1/6;
+titleHeight10=height*1/6;
   //
   titleFont1 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
   titleFont2 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
@@ -414,13 +464,39 @@ println(imageX2, imageY2, picWidthAdjusted2,  picHeightAdjusted2);//Note: printl
   titleFont5 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
   titleFont6 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
   titleFont7 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont8= createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont9 = createFont("Harrington", 15); //Verify the font exists in Processing.JAVA
+  titleFont10 = createFont("Harrington", 10); //Verify the font exists in Processing.JAVA
   //
   rect( drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight );
   //
 }//End setup
 //
 void draw()
-{
+{ //Hover-over
+  if ( mouseX>   templateButtonX && mouseX<  templateButtonX+  templateButtonWidth && mouseY>  templateButtonY && mouseY<    templateButtonY+   templateButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  rect(  templateButtonX,  templateButtonY, templateButtonWidth,  templateButtonHeight);
+  fill(resetButtonColour);
+  //
+  fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont5, titleSize);
+  text(title5, titleX5, titleY5, titleWidth5, titleHeight5);
+  fill(resetDefaultInk);
+  //
+  //
+//if(template1ON=true)rect(imageX1, imageY1, imageWidth1, imageHeight1); //Top Half of CANVAS
+ //if(template2ON=true)rect(imageX2, imageY2, imageWidth2, imageHeight2); //Bottom Half of CANVAS
+ //image(pic, imageX, imageY, imageWidth, imageHeight);
+ //if(template1ON=true)image(pic1, imageX1, imageY1, picWidthAdjusted1, picHeightAdjusted1);
+ //if(template2ON=true)image(pic2, imageX2, imageY2, picWidthAdjusted2, picHeightAdjusted2);
  //Hover-over
   if ( mouseX>   thinlineButtonX && mouseX<  thinlineButtonX+  thinlineButtonWidth && mouseY>  thinlineButtonY && mouseY<    thinlineButtonY+   thinlineButtonHeight) {
     buttonFill = grey;
@@ -459,7 +535,7 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(circleStampON==true)rect( circleStampButtonX,   circleStampButtonY,   circleStampButtonWidth,    circleStampButtonHeight);
+  if(stamptoolsON==true)rect( circleStampButtonX,   circleStampButtonY,   circleStampButtonWidth,    circleStampButtonHeight);
   fill(resetButtonColour);
   //
    //Hover-over
@@ -469,7 +545,7 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(rectStampON==true)rect( rectStampButtonX,   rectStampButtonY,   rectStampButtonWidth,    rectStampButtonHeight);
+  if(stamptoolsON==true)rect( rectStampButtonX,   rectStampButtonY,   rectStampButtonWidth,    rectStampButtonHeight);
   fill(resetButtonColour);
   //
    //Hover-over
@@ -479,7 +555,7 @@ void draw()
     buttonFill = white;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(triStampON==true)rect( triStampButtonX,   triStampButtonY,   triStampButtonWidth,    triStampButtonHeight);
+  if(stamptoolsON==true)rect( triStampButtonX,   triStampButtonY,   triStampButtonWidth,    triStampButtonHeight);
   fill(resetButtonColour);
   //
   //Drawing Tools
@@ -513,11 +589,7 @@ void draw()
   fill(resetButtonColour);
   //End Eraser
   //
-  //Colours
-   if(colourON==true)rect( blueX, blueY,blueWidth, blueHeight);
-   if(colourON==true)rect(redX, redY,redWidth, redHeight);
-   if(colourON==true)rect(greenX, greenY, greenWidth, greenHeight);
-   if(colourON==true)rect(yellowX, yellowY,yellowWidth, yellowHeight);
+ 
   
  //Layout our text space and typographical features
   rect(titleX1, titleY1, titleWidth1, titleHeight1);
@@ -527,22 +599,22 @@ void draw()
   //
   //Stamp Tools
    if ( circleStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
-  circle(circleStampX,circleStampY, circleStampDiameter); 
+  circle(mouseX,mouseY, circleStampDiameter); 
   stroke (10);}
   //
     if ( rectStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
-  rect( rectStampX, rectStampY, rectStampWidth, rectStampHeight); 
+  rect( mouseX, mouseY,  rectStampWidth, rectStampHeight); 
   stroke (10);}
   //
    if ( triStampON== true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
-  triangle( triStampX1, triStampY1,triStampX2, triStampY2,triStampX3, triStampY3 ); 
+  triangle( mouseX, mouseY,triStampX2, triStampY2,triStampX3, triStampY3 ); 
   stroke (10);}
   //ellipse( mouseX, mouseY, drawingDiameter, drawingDiameter); //Example Circle Drawing Tool
  //
   if ( thinlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight)  {
   strokeWeight (lineThickness);
-  line (mouseX, mouseY, pmouseX, pmouseY); 
-  strokeWeight(1);
+  line (mouseX, mouseY, pmouseX, pmouseY);
+   strokeWeight(1);
   }
   if (  mediumlineON=true && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
   strokeWeight(lineThickness);
@@ -550,6 +622,11 @@ void draw()
   strokeWeight(1);
   }
   if ( thicklineON=true  && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
+  strokeWeight(lineThickness);
+  line (mouseX, mouseY, pmouseX, pmouseY); 
+  strokeWeight(1);
+ }
+ if ( eraseOn=true  && mouseX>drawingSurfaceX && mouseX<drawingSurfaceX+drawingSurfaceWidth && mouseY>drawingSurfaceY && mouseY<drawingSurfaceY+drawingSurfaceHeight) {
   strokeWeight(lineThickness);
   line (mouseX, mouseY, pmouseX, pmouseY); 
   strokeWeight(1);
@@ -627,24 +704,7 @@ void draw()
   text(title4, titleX4, titleY4, titleWidth4, titleHeight4);
   fill(resetDefaultInk);
   //
-  //Hover-over
-  if ( mouseX>   templateButtonX && mouseX<  templateButtonX+  templateButtonWidth && mouseY>  templateButtonY && mouseY<    templateButtonY+   templateButtonHeight) {
-    buttonFill = grey;
-  } else {
-    buttonFill = white;
-  }//End Hover-Over
-  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  rect(  templateButtonX,  templateButtonY, templateButtonWidth,  templateButtonHeight);
-  fill(resetButtonColour);
-  //
-  fill(black); //Ink, hexidecimal copied from Color Selector
-  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
-  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
-  titleSize = 15; //Change this number until it fits
-  textFont(titleFont5, titleSize);
-  text(title5, titleX5, titleY5, titleWidth5, titleHeight5);
-  fill(resetDefaultInk);
-  //
+ 
    //Colour Buttons
    //Hover-over
   if ( mouseX> blueButtonX && mouseX< blueButtonX+blueButtonWidth && mouseY> blueButtonY && mouseY< blueButtonY+ blueButtonHeight) {
@@ -653,7 +713,7 @@ void draw()
     buttonFill = darkblue;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect( blueButtonX,  blueButtonY,  blueButtonWidth,  blueButtonHeight);
+   if(colorSelectON=true)rect( blueButtonX,  blueButtonY,  blueButtonWidth,  blueButtonHeight);
   fill(resetButtonColour);
   //
   //Hover-over
@@ -663,7 +723,7 @@ void draw()
     buttonFill = darkred;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect( redButtonX,  redButtonY,  redButtonWidth,  redButtonHeight);
+  if(colorSelectON=true)rect( redButtonX,  redButtonY,  redButtonWidth,  redButtonHeight);
   fill(resetButtonColour);
    //Hover-over
   if ( mouseX> greenButtonX && mouseX<  greenButtonX+ greenButtonWidth && mouseY>  greenButtonY && mouseY<  greenButtonY+  greenButtonHeight) {
@@ -672,7 +732,7 @@ void draw()
     buttonFill = darkgreen;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect(  greenButtonX,  greenButtonY,   greenButtonWidth,  greenButtonHeight);
+  if(colorSelectON=true)rect(  greenButtonX,  greenButtonY,   greenButtonWidth,  greenButtonHeight);
   fill(resetButtonColour);
   //
   //Hover-over
@@ -682,7 +742,7 @@ void draw()
     buttonFill = darkyellow;
   }//End Hover-Over
   fill(buttonFill); //2-colours to start, remember that nightMode adds choice
-  if(colourON=true)rect(  yellowButtonX, yellowButtonY,  yellowButtonWidth,  yellowButtonHeight);
+  if(colorSelectON=true)rect(  yellowButtonX, yellowButtonY,  yellowButtonWidth,  yellowButtonHeight);
   fill(resetButtonColour);
   //
   //Template Buttons
@@ -722,14 +782,55 @@ void draw()
   if(templatesON=true)text(title7, titleX7, titleY7, titleWidth7, titleHeight7);
   fill(resetDefaultInk);
   //
- if(template1ON=true)rect(imageX1, imageY1, imageWidth1, imageHeight1); //Top Half of CANVAS
- if(template2ON=true)rect(imageX2, imageY2, imageWidth2, imageHeight2); //Bottom Half of CANVAS
- //image(pic, imageX, imageY, imageWidth, imageHeight);
- if(template1ON=true)image(pic1, imageX1, imageY1, picWidthAdjusted1, picHeightAdjusted1);
- if(template2ON=true)image(pic2, imageX2, imageY2, picWidthAdjusted2, picHeightAdjusted2);
+//Play Button
+//Hover-over
+  if ( mouseX> playButtonX && mouseX<  playButtonX+ playButtonWidth && mouseY>  playButtonY && mouseY< playButtonY+ playButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  rect(  playButtonX, playButtonY, playButtonWidth,  playButtonHeight);
+  fill(resetButtonColour);
+//Hover-over
+  if ( mouseX> pauseButtonX && mouseX<  pauseButtonX+ pauseButtonWidth && mouseY> pauseButtonY && mouseY< pauseButtonY+ pauseButtonHeight) {
+    buttonFill = grey;
+  } else {
+    buttonFill = white;
+  }//End Hover-Over
+  fill(buttonFill); //2-colours to start, remember that nightMode adds choice
+  rect(  pauseButtonX, pauseButtonY, pauseButtonWidth,  pauseButtonHeight);
+  fill(resetButtonColour);
+  //
+  //
+   fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont8, titleSize);
+  text(title8, titleX8, titleY8, titleWidth8, titleHeight8);
+  fill(resetDefaultInk);
+  //
+  fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont9, titleSize);
+  text(title9, titleX9, titleY9, titleWidth9, titleHeight9);
+  fill(resetDefaultInk);
+  //
+   fill(black); //Ink, hexidecimal copied from Color Selector
+  textAlign( CENTER, CENTER); //Align X*Y, see Processing.org / Reference
+  //Values: [ LEFT | CENTER | Right ] & [ TOP | CENTER | BOTTOM | BASELINE ]
+  titleSize = 15; //Change this number until it fits
+  textFont(titleFont10, titleSize);
+  text(title10, titleX10, titleY10, titleWidth10, titleHeight10);
+  fill(resetDefaultInk);
 }//End draw
 //
-void keyPressed() {
+void keyPressed()
+{
+  if (key=='q' || key=='Q') exit();
 }//End keyPressed
 //
 void mousePressed()
@@ -776,9 +877,9 @@ void mousePressed()
      thicklineON = false;
     }
     //
-   if (thinlineON==true) lineThickness=(10);
-   if (mediumlineON==true) lineThickness=(20);
-   if (thicklineON==true) lineThickness=(50);
+ if (thinlineON==true) lineThickness=(10);
+ if (mediumlineON==true) lineThickness=(20);
+ if (thicklineON==true) lineThickness=(50);
    //
   }
   if ( mouseX>circleStampButtonX && mouseX<circleStampButtonX+circleStampButtonWidth && mouseY>circleStampButtonY && mouseY<circleStampButtonY+circleStampButtonHeight ) {
@@ -802,6 +903,9 @@ void mousePressed()
      triStampON = false;
     }
   }
+  if(circleStampON==true)stroke(1);fill(black);
+  if(rectStampON==true)stroke(1);fill(black);
+  if(triStampON==true)stroke(1);fill(black);
   if ( mouseX>eraseButtonX && mouseX<eraseButtonX+eraseButtonWidth && mouseY>eraseButtonY && mouseY<eraseButtonY+eraseButtonHeight ) {
     if ( eraseOn== false) {
     eraseOn=true;
@@ -810,12 +914,17 @@ void mousePressed()
     }
   }
   if ( mouseX>colourButtonX && mouseX<colourButtonX+colourButtonWidth && mouseY>colourButtonY && mouseY<colourButtonY+colourButtonHeight ) {
-    if ( colourON=false) {
-    colourON=true;
+    if (colorSelectON==false) {
+    colorSelectON=true;
     } else {
-     colourON = false;
+     colorSelectON=false;
     }
   }
+   if ( yellowON==true ) stroke(darkyellow) ;fill(darkyellow);
+  if ( greenON==true ) stroke(darkgreen) ;fill(darkgreen);
+  if ( blueON==true ) stroke(darkblue) ;fill(darkblue);
+  if ( redON==true ) stroke(darkred) ;fill(darkred);
+  if ( eraseOn==true ) stroke(white); fill(white);
   if ( mouseX>blueButtonX && mouseX<blueButtonX+blueButtonWidth && mouseY>blueButtonY && mouseY<blueButtonY+blueButtonHeight ) {
     if ( blueON==false) {
     blueON=true;
@@ -864,6 +973,24 @@ void mousePressed()
     template2ON=true;
     } else {
      template2ON = false;
+    }
+  }
+   if ( mouseX>playButtonX && mouseX<playButtonX+playButtonWidth && mouseY>playButtonY && mouseY<playButtonY+playButtonHeight ) {
+    if (song1.isPlaying()) {
+    song1.pause();
+    song1.rewind();
+    } else {
+     playON = false;
+    }
+  }
+  if ( mouseX>pauseButtonX && mouseX<pauseButtonX+pauseButtonWidth && mouseY>pauseButtonY && mouseY<pauseButtonY+pauseButtonHeight ) {
+    if (song1.isPlaying()) {
+    song1.pause();
+     } else if ( song1.position() >= song1.length() - song1.length()*1/5 ) {
+      song1.rewind();
+      song1.play();
+    } else {
+      song1.play();
     }
   }
   //End drawing tools
